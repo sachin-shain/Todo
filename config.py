@@ -52,7 +52,6 @@ RECURRING_FILENAME = "recurring.csv"
 # Eg.  'C:/Users/usr1/Desktop'
 PDF_PATH = OSUtils.cwd()[:-1]
 # PDF_PATH = ""
-print(PDF_PATH)
 
 # export pdf categories
 PDF_CATEGORIES = {
