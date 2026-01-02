@@ -2,3 +2,4 @@
 */update/__pycache__ 
 */update/.mypy* 
 *.ipynb
+.ipynb_checkpoints/
