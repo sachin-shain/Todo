@@ -1,5 +1,6 @@
-*/__pycache__ 
-*/update/__pycache__ 
-*/update/.mypy* 
+__pycache__/
+*.pyc
 *.ipynb
 .ipynb_checkpoints/
+*.pdf
+*.csv

@@ -185,4 +185,5 @@ class RecurringManager
         rec_dict_gen()
         add_rec_task(task, frequency)
         update_rec_task(task, frequency)
+        delete_rec_task(ID: int)
 

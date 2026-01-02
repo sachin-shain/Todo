@@ -22,6 +22,7 @@ class RecurringManager:
         rec_dict_gen()
         add_rec_task(task, frequency)
         update_rec_task(task, frequency)
+        delete_rec_task(ID: int)
     """
 
     def __init__(self, manager: "TaskManager"):
@@ -84,6 +85,8 @@ class RecurringManager:
         # update recurring.csv
         self.manager.storage.save_recurring_df(self.rec_df)
 
+        return None
+
     # update recurring tasks and save to recurring.csv
     def update_rec_task(self, task, frequency):
 
@@ -97,6 +100,26 @@ class RecurringManager:
         self.update_tasks_df()
         # update recurring.csv
         self.manager.storage.save_recurring_df(self.rec_df)
+
+        return None
+
+    # delete recurring task from task_df id
+    def delete_rec_task(self, ID: int):
+        # get task description
+        task = self.manager.tasks_df.loc[ID, "Tasks"]
+
+        if not task in self.rec_dict.keys():
+            return None
+
+        # get task id in rec_df
+        idx = self.rec_df.index[self.rec_df["Tasks"] == task]
+        # delete task
+        self.rec_df = self.rec_df.drop(index=idx)
+        # update rec_dict and recurring.csv
+        self.rec_dict_gen()
+        self.manager.storage.save_recurring_df(self.rec_df)
+
+        return None
 
 
 if __name__ == "__main__":

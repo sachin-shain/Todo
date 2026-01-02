@@ -60,7 +60,8 @@ def delete_task_from_id(manager: "TaskManager"):
             # show task details
             print_df(df, manager)
 
-            # delete task
+            # delete task and update recurring.csv
+            manager.RM.delete_rec_task(task_id)
             delete_task_with_id(task_id, manager)
 
             print(f"\nTask '{task}' deleted.")
