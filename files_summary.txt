@@ -1,0 +1,188 @@
+main.py
+
+functions:
+    run(manager: TaskManager)
+    main()
+
+===========================================================================
+===========================================================================
+
+config.py
+
+variables:
+    OS
+    TASK_COLUMNS
+    RECURRING_TASK_COLUMNS
+    STATUS_CATEGORIES
+    PRIORITY_CATEGORIES
+    DATE_CATEGORIES
+    FORMAT_OPTIONS
+    FORMAT_INPUT
+    DATETIME_FORMAT
+    TODO_FILENAME
+    RECURRING_FILENAME
+    PDF_PATH
+
+functions:
+    input_format(text_str: str, choice_option="", input_=False, new_line=False)
+    options_format(text_str: str, choice_option="", input_=False, new_line=False)
+    invalid_choice(second_line=" Try again. ")
+
+===========================================================================
+===========================================================================
+
+os_utils.py
+
+OSUtils
+    variables:
+        cwd
+
+    functions:
+        @staticmethod
+            clear_screen()
+            cwd() -> str
+        check_file_exists(file_name)
+        make_hidden(file_name)
+        make_unhidden(file_name)
+        get_pdf_path(pdf_path: str = "") -> str
+    
+===========================================================================
+===========================================================================
+
+cli_menus.py
+
+CLI_menus
+    functions (staticmethod)
+        show_main_menu()
+        sub_tasks_header(tasks_list, update=None, idx_list=None)
+        show_deadline_date_menu(update=False, date_str=None)
+        show_deadline_time_menu(update=False, time_str=None)
+        show_status_menu(update=False, status=None)
+        show_comment_menu(priority, update=False, comment=None)
+        show_update_menu()
+        show_print_menu()
+        show_task_id(tasks_dict)
+        show_task_exists_menu(task, task_id)
+        show_delete_menu()
+    
+===========================================================================
+===========================================================================
+
+deadlines.py
+
+DeadlineUtils
+    functions (staticmethod)
+        datetime_obj_to_datetime_str(datetime_obj) -> str
+        datetime_str_to_datetime_obj(datetime_str) -> datetime
+        datetime_str_to_deadline_column(datetime_str) -> str
+        deadline_csv_clean_up(date_str, time_str) -> str
+        date_clean_up(date_str) -> str
+        time_clean_up(time_str) -> str
+        check_date_in_range_fun_gen(date_start, date_end) -> function
+        today_get_weekday() -> int
+        task_deadline_elapsed(deadline_str) -> bool
+        recurring_task_new_deadline(deadline_str, frequency) -> (str, str)
+    
+===========================================================================
+===========================================================================
+
+storage.py
+
+StorageManager
+    members:
+        file_names
+        file_headers
+
+    functions:
+        check_for_databases()
+        update_deadline_column()
+        load_databases() -> DataFrame
+        close_database(tasks_df=None)
+        save_database(tasks_df)
+        load_recurring_df()
+        save_recurring_df(r_df)
+    
+===========================================================================
+===========================================================================
+
+task_manager.py
+
+class TaskManager
+    variables:
+        tasks_df
+        tasks_dict
+
+    functions:
+        update_dict()
+        add_tasks()
+        update_tasks()
+        show_tasks()
+        delete_tasks()
+        exit_main_menu()
+
+===========================================================================
+===========================================================================
+
+add_tasks.py
+
+Functions:
+    task_ids_with_task_description(task: str, manager: "TaskManager") -> list
+    add_rows_tasks_df(data: list, manager: "TaskManager")
+    add_sub_task(priority: str, task: str, no_sub_tasks: bool = False) -> list
+    add_tasks(manager: "TaskManager")
+
+===========================================================================
+===========================================================================
+
+update_tasks.py
+
+Functions:
+    update_sub_task(task_id: int, manager: "TaskManager")
+    update_tasks(manager: "TaskManager")
+
+===========================================================================
+===========================================================================
+
+show_tasks.py
+
+Functions:
+    print_df(df: pd.DataFrame, manager: "TaskManager")
+    print_recurring_tasks(manager: "TaskManager")
+    show_tasks(manager: "TaskManager")
+
+===========================================================================
+===========================================================================
+
+delete_tasks.py
+
+Functions:
+    delete_task_with_id(task_id: int, manager: "TaskManager")
+    delete_task_from_id(manager: "TaskManager")
+    delete_tasks(manager: "TaskManager")
+
+===========================================================================
+===========================================================================
+
+pdf_exporter.py
+
+Functions:
+    export_tasks_category(manager, category="overdue")
+    export_tasks(manager: "TaskManager")
+
+===========================================================================
+===========================================================================
+
+recurring_manager.py
+
+class RecurringManager
+    variables:
+        manager
+        rec_df
+        rec_dict
+
+    functions:
+        update_tasks_df()
+        rec_dict_gen()
+        add_rec_task(task, frequency)
+        update_rec_task(task, frequency)
+
