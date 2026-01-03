@@ -159,6 +159,13 @@ def delete_tasks(manager: "TaskManager"):
         # 2. delete Completed tasks
         elif choice == "2":
             df_completed = manager.tasks_df[manager.tasks_df["Status"] == "Completed"]
+
+            # recurring tasks
+            rec_tasks = manager.RM.rec_dict.keys()
+
+            # ignore completed recurring tasks
+            df_completed = df_completed[~df_completed["Tasks"].isin(rec_tasks)]
+
             df_completed_idx = df_completed.index
 
             # no 'Completed' tasks

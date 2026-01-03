@@ -240,7 +240,10 @@ class DeadlineUtils:
     def task_deadline_elapsed(deadline_str):
         deadline_obj = DeadlineUtils.datetime_str_to_datetime_obj(deadline_str)
 
-        return deadline_obj < datetime.today()
+        return (
+            deadline_obj < datetime.today()
+            and deadline_obj.date() != datetime.today().date()
+        )
 
     # =======================================================
     # =======================================================

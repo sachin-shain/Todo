@@ -297,7 +297,7 @@ class CLI_menus:
         print("\tDelete Menu")
 
         input_format("Delete tasks using ID", 1)
-        input_format("Delete 'Completed' tasks", 2)
+        input_format("Delete 'Completed' non-recurring tasks", 2)
         input_format("Exit to main menu", "press 'Enter'")
 
         return None

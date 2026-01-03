@@ -166,6 +166,8 @@ Functions:
 pdf_exporter.py
 
 Functions:
+    wrap_cell(text, style)
+    deadline_col_format(txt)
     export_tasks_category(manager, category="overdue")
     export_tasks(manager: "TaskManager")
 

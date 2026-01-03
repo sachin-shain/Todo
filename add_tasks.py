@@ -85,12 +85,12 @@ def add_sub_task(priority: str, task: str, no_sub_tasks: bool = False) -> list:
     # deadline date details
     # default: today
     CLI_menus.show_deadline_date_menu()
-    date_str = input_format("Enter date", input_=True, new_line=True)
+    date_str = options_format("Enter date", input_=True, new_line=True)
 
     # deadline time details
     # default: 11:59 PM
     CLI_menus.show_deadline_time_menu()
-    time_str = input_format("Enter time", input_=True, new_line=True)
+    time_str = options_format("Enter time", input_=True, new_line=True)
 
     # status details
     # default: Not Started
